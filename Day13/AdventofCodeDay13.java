@@ -24,14 +24,29 @@ public class AdventofCodeDay13{
       }
     }
 
-    private static void findReflectionH(List<String> pattern) {
+    private static int findReflectionH(List<String> pattern) {
+      int indexOfReflection = 0;
+      String rString = "";
+      String fString = "";
       for (int i =0; i < pattern.size(); i++){
-        String rString = "";
-        for (int j = 1 ; j < pattern.get(i).length(); j++){
-          rString = pattern.get(i).charAt(j) + pattern.get(i).charAt(j+1) + rString;
+        fString = "";
+        for (int j = 1 ; j < pattern.get(i).length()/2; j++){ // j = 1 in the final version. j = 0 to see full strings
+          rString = "";
+          fString += pattern.get(i).charAt(j);
+          for (int k = j+1 ; k < j*2+1; k++){
+            rString += pattern.get(i).charAt(k);
+            if (fString.equals(rString)){
+              indexOfReflection=j-1;
+              System.out.println(indexOfReflection);
+              break;
+            }
+          }
         }
-        System.out.println(rString+ "\n");
+        System.out.println(rString);
+        System.out.println(fString);
+        System.out.println(fString+rString+"\n");
       }
+      return indexOfReflection;
     }
 
     private static void findReflectionV(List<String> pattern) {
